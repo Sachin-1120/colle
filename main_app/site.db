@@ -1,0 +1,51 @@
+CREATE TABLE student_result (
+	id INTEGER NOT NULL, 
+	student_name VARCHAR(100) NOT NULL, 
+	student_roll VARCHAR(100) NOT NULL, 
+	student_class VARCHAR(100) NOT NULL, 
+	student_mark_details VARCHAR(500) NOT NULL, 
+	subject_total_marks VARCHAR(100) NOT NULL, 
+	total_achive_mark VARCHAR(100) NOT NULL, 
+	total_achive_grade VARCHAR(100) NOT NULL, 
+	date DATETIME NOT NULL, 
+	exam_id INTEGER NOT NULL, 
+	exam_subject_id INTEGER NOT NULL, 
+	PRIMARY KEY (id), 
+	FOREIGN KEY(exam_id) REFERENCES exam (id), 
+	FOREIGN KEY(exam_subject_id) REFERENCES exam_subject (id)
+)	
+CREATE TABLE notice (
+	id INTEGER NOT NULL, 
+	title VARCHAR(100) NOT NULL, 
+	date_posted DATETIME NOT NULL, 
+	content TEXT NOT NULL, 
+	user_id INTEGER NOT NULL, 
+	PRIMARY KEY (id), 
+	FOREIGN KEY(user_id) REFERENCES user (id)
+)CREATE TABLE user (
+	id INTEGER NOT NULL, 
+	username VARCHAR(20) NOT NULL, 
+	email VARCHAR(120) NOT NULL, 
+	image_file VARCHAR(20) NOT NULL, 
+	password VARCHAR(60) NOT NULL, 
+	PRIMARY KEY (id), 
+	UNIQUE (email), 
+	UNIQUE (username)
+)
+CREATE TABLE exam_subject (
+	id INTEGER NOT NULL, 
+	full_marks VARCHAR(100) NOT NULL, 
+	pass_marks VARCHAR(100) NOT NULL, 
+	date_posted DATETIME NOT NULL, 
+	exam_id INTEGER NOT NULL, subject VARCHAR(100) NOT NULL, 
+	PRIMARY KEY (id), 
+	FOREIGN KEY(exam_id) REFERENCES exam (id)
+)ÅCREATE TABLE exam (
+	id INTEGER NOT NULL, 
+	exam_name VARCHAR(100) NOT NULL, 
+	date_posted DATETIME NOT NULL, 
+	PRIMARY KEY (id)
+)ÅCREATE TABLE alembic_version (
+	version_num VARCHAR(32) NOT NULL, 
+	CONSTRAINT alembic_version_pkc PRIMARY KEY (version_num)
+)
